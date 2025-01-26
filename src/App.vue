@@ -2,8 +2,8 @@
 import { onMounted, ref } from "vue";
 import UserTable from "@/components/UserTable.vue";
 import UserService from "@/services/UserService";
-import UseSweetAlert from "@/utils/UseSweetAlert";
-import UseFormatAddress from "@/utils/UseFormatAddress";
+import useSweetAlert from "@/utils/useSweetAlert";
+import useFormatAddress from "@/utils/useFormatAddress";
 
 const usersData = ref([]);
 const isLoading = ref(false);
@@ -11,22 +11,21 @@ const isLoading = ref(false);
 const getUsersData = async () => {
   try {
     isLoading.value = true;
-    const resUsers = await UserService.getUser();
-    const { data: users = [] } = resUsers;
+    const usersRes = await UserService.getUsers();
 
-    if (!users.length) return;
+    if (!usersRes.length) return;
 
-    usersData.value = users.map((user) => {
+    usersData.value = usersRes.map((user) => {
       const { address, company } = user;
 
       return {
         ...user,
-        address: UseFormatAddress(address),
+        address: useFormatAddress(address),
         company: company?.name,
       };
     });
   } catch (err) {
-    UseSweetAlert({
+    useSweetAlert({
       title: "Error",
       icon: "error",
       text: "There was an error, please try again later!",
@@ -48,3 +47,4 @@ onMounted(() => {
   </main>
 </template>
 
+@/utils/useSweetAlert

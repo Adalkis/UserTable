@@ -1,6 +1,6 @@
 import Swal from "sweetalert2";
 
-const UseSweetAlert = async (customParams) => {
+const useSweetAlert = async (customParams) => {
   return Swal.fire({
     showConfirmButton: false,
     showCancelButton: false,
@@ -9,4 +9,4 @@ const UseSweetAlert = async (customParams) => {
   });
 };
 
-export default UseSweetAlert;
+export default useSweetAlert;

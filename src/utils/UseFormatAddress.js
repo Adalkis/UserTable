@@ -1,4 +1,4 @@
-const UseFormatAddress = (address = null) => {
+const useFormatAddress = (address = null) => {
   let formattedAddress = "";
 
   if (!address) return formattedAddress;
@@ -23,4 +23,4 @@ const UseFormatAddress = (address = null) => {
   return formattedAddress;
 };
 
-export default UseFormatAddress;
+export default useFormatAddress;
