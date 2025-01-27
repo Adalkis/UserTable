@@ -12,22 +12,20 @@ provide("isLoading", isLoading);
 
 const getUsersData = async () => {
   try {
-    setTimeout(async () => {
-      isLoading.value = true;
-      const usersRes = await UserService.getUsers();
+    isLoading.value = true;
+    const usersRes = await UserService.getUsers();
 
-      if (!usersRes.length) return;
+    if (!usersRes.length) return;
 
-      usersData.value = usersRes.map((user) => {
-        const { address, company } = user;
+    usersData.value = usersRes.map((user) => {
+      const { address, company } = user;
 
-        return {
-          ...user,
-          address: useFormatAddress(address),
-          company: company?.name,
-        };
-      });
-    }, 5000);
+      return {
+        ...user,
+        address: useFormatAddress(address),
+        company: company?.name,
+      };
+    });
   } catch (err) {
     useSweetAlert({
       title: "Error",

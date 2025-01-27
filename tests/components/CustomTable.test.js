@@ -21,7 +21,7 @@ describe("<CustomTable/>", () => {
     const wrapper = mount(CustomTable, {
       global: {
         provide: {
-          isLoading: false,
+          isLoading,
         },
       },
     });
