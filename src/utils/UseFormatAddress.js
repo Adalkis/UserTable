@@ -2,7 +2,6 @@ const useFormatAddress = (address = null) => {
   let formattedAddress = "";
 
   if (!address) return formattedAddress;
-
   const { city, suite, street, zipCode } = address;
 
   if (street) {
@@ -20,7 +19,7 @@ const useFormatAddress = (address = null) => {
   if (zipCode) {
     formattedAddress += zipCode;
   }
-  return formattedAddress;
+  return formattedAddress.trim();
 };
 
 export default useFormatAddress;

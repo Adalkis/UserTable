@@ -1,5 +1,5 @@
 <script setup>
-import { onMounted, ref } from "vue";
+import { onMounted, ref, provide } from "vue";
 import UserTable from "@/components/UserTable.vue";
 import UserService from "@/services/UserService";
 import useSweetAlert from "@/utils/useSweetAlert";
@@ -8,22 +8,26 @@ import useFormatAddress from "@/utils/useFormatAddress";
 const usersData = ref([]);
 const isLoading = ref(false);
 
+provide("isLoading", isLoading);
+
 const getUsersData = async () => {
   try {
-    isLoading.value = true;
-    const usersRes = await UserService.getUsers();
+    setTimeout(async () => {
+      isLoading.value = true;
+      const usersRes = await UserService.getUsers();
 
-    if (!usersRes.length) return;
+      if (!usersRes.length) return;
 
-    usersData.value = usersRes.map((user) => {
-      const { address, company } = user;
+      usersData.value = usersRes.map((user) => {
+        const { address, company } = user;
 
-      return {
-        ...user,
-        address: useFormatAddress(address),
-        company: company?.name,
-      };
-    });
+        return {
+          ...user,
+          address: useFormatAddress(address),
+          company: company?.name,
+        };
+      });
+    }, 5000);
   } catch (err) {
     useSweetAlert({
       title: "Error",
@@ -43,8 +47,6 @@ onMounted(() => {
 <template>
   <main class="h-100">
     <h1 class="text-center py-5">Users Table</h1>
-    <user-table :users-data="usersData" :is-loading="isLoading" />
+    <user-table :users-data="usersData" />
   </main>
 </template>
-
-@/utils/useSweetAlert

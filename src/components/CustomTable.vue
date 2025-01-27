@@ -1,14 +1,10 @@
 <script setup>
+import { inject } from "vue";
+
 const props = defineProps({
-  isLoading: {
-    type: Boolean,
-    default: false,
-  },
-  customClass: {
-    type: String,
-    default: "",
-  },
+  customClass: String,
 });
+const isLoading = inject("isLoading");
 </script>
 
 

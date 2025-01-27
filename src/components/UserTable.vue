@@ -5,16 +5,12 @@ const props = defineProps({
     type: Array,
     required: true,
   },
-  isLoading: {
-    type: Boolean,
-    default: false,
-  },
 });
 </script>
 
 
 <template>
-  <custom-table :is-loading="isLoading" customClass="table-striped">
+  <custom-table customClass="table-striped">
     <template #header>
       <tr>
         <th>Name</th>
