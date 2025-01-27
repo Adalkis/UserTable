@@ -9,7 +9,7 @@ const isLoading = inject("isLoading");
 
 
 <template>
-  <div class="table-responsive">
+  <div class="table-responsive customTable">
     <table :class="['table h-100', customClass]">
       <thead>
         <slot name="header"></slot>
@@ -27,3 +27,9 @@ const isLoading = inject("isLoading");
     </table>
   </div>
 </template>
+
+<style scoped>
+.customTable {
+  max-height: 600px;
+}
+</style>

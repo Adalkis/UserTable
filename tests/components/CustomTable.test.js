@@ -8,7 +8,7 @@ describe("<CustomTable/>", () => {
     const wrapper = mount(CustomTable, {
       global: {
         provide: {
-          isLoading,
+          isLoading: isLoading,
         },
       },
     });
@@ -21,7 +21,7 @@ describe("<CustomTable/>", () => {
     const wrapper = mount(CustomTable, {
       global: {
         provide: {
-          isLoading,
+          isLoading: isLoading,
         },
       },
     });
@@ -30,9 +30,15 @@ describe("<CustomTable/>", () => {
   });
 
   test("Apply customClass to the table", () => {
+    const isLoading = ref(false);
     const wrapper = mount(CustomTable, {
       props: {
         customClass: "table-striped",
+      },
+      global: {
+        provide: {
+          isLoading: isLoading,
+        },
       },
     });
 
